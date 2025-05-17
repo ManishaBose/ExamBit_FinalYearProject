@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-axios.interceptors.response.use(null, error => {
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_BASE_URL || '', // '' uses proxy in dev, URL used in production
+});
+
+api.interceptors.response.use(null, error => {
   const expectedError =
     error.response &&
     error.response.status >= 400 &&
@@ -13,8 +17,8 @@ axios.interceptors.response.use(null, error => {
 });
 
 export default {
-  get: axios.get,
-  post: axios.post,
-  put: axios.put,
-  delete: axios.delete,
+  get: api.get,
+  post: api.post,
+  put: api.put,
+  delete: api.delete,
 };
