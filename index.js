@@ -18,6 +18,7 @@ const audio = require("./routes/audio");
 
 const groups = require("./routes/group");
 const PORT = process.env.PORT || 3900;
+app.use(cors());
 mongoose
   .connect(MONOGOURI, { useUnifiedTopology: true, useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB..."))
